@@ -124,3 +124,57 @@ blog website cms/
 ├── categories.php
 ├── connection.php
 └── index.php
+How It Works
+Admin creates a blog using the Add Blog form.
+PHP receives the form data.
+The uploaded image is stored inside the uploads folder.
+Blog information is inserted into the MySQL database.
+Blogs are dynamically displayed on the website.
+Admin can edit or delete existing blogs.
+JavaScript provides section navigation, search, highlighting and confirmation popups.
+Running the Project Locally
+Install WAMP or XAMPP.
+Place the project folder inside the www or htdocs directory.
+Start Apache and MySQL.
+Open phpMyAdmin.
+Create the blog_cms database.
+Create/import the required blogs table.
+Configure the database connection inside connection.php.
+Open the project in your browser.
+
+Example:
+
+http://localhost/blog-website-cms/
+Upcoming Features
+Admin Login and Registration
+PHP Sessions
+Protected Admin Dashboard
+Logout System
+Draft Blog Management
+Categories Management
+Tags Management
+Admin Profile and Settings
+Project Purpose
+
+This project was created to practice and demonstrate full-stack web development concepts including:
+
+Frontend development
+PHP backend development
+MySQL database integration
+CRUD operations
+File uploading
+JavaScript DOM manipulation
+Dynamic search
+Admin dashboard development
+Git and GitHub version control
+Author
+
+Sneha Rani
+
+Frontend Developer / Junior Full-Stack Developer
+
+GitHub:
+https://github.com/ranisneha2508-ship-it
+
+Behance:
+https://www.behance.net/sneharani4
