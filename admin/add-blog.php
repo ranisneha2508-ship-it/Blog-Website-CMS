@@ -3,13 +3,11 @@
 include("../connection.php");
 
 if (isset($_POST['submit'])) {
-
     $title = $_POST['title'];
     $category = $_POST['category'];
     $author = $_POST['author'];
     $description = $_POST['description'];
     $content = $_POST['content'];
-
     $image_name = $_FILES['image']['name'];
     $image_tmp = $_FILES['image']['tmp_name'];
 
@@ -17,24 +15,19 @@ if (isset($_POST['submit'])) {
 
     move_uploaded_file($image_tmp, $upload_path);
 
-    $sql = "INSERT INTO blogs
-            (title, image, category, author, description, content)
+    $sql = "INSERT INTO blogs (title, image, category, author, description, content)
             VALUES
             ('$title', '$image_name', '$category', '$author', '$description', '$content')";
 
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-
         echo "<script>
                 alert('Blog Added Successfully!');
                 window.location.href='index.php';
-              </script>";
-
+              </script>"
     } else {
-
         echo "Error: " . mysqli_error($conn);
-
     }
 }
 
@@ -43,26 +36,18 @@ if (isset($_POST['submit'])) {
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Add Blog | Blog CMS</title>
-
     <link rel="stylesheet" href="admin.css">
-
 </head>
 
 <body>
-
     <h1>Add New Blog</h1>
-
     <form method="POST"
           enctype="multipart/form-data">
-
         <label>Blog Title</label>
         <input type="text" name="title" required>
-
 
         <label>Blog Image</label>
         <input type="file"
@@ -70,12 +55,10 @@ if (isset($_POST['submit'])) {
                accept="image/*"
                required>
 
-
         <label>Category</label>
         <input type="text"
                name="category"
                required>
-
 
         <label>Author</label>
         <input type="text"

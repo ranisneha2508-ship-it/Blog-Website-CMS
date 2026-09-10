@@ -1,104 +1,27 @@
-<<<<<<< HEAD
-
-// Blog Dropdown
-
-const blogDropdown = document.querySelector(".dropdown-toggle");
-const submenu = document.querySelector(".submenu");
-
-blogDropdown.onclick = function () {
-    submenu.classList.toggle("show");
-    blogDropdown.classList.toggle("open");
-};
-
-
-// Profile Dropdown
-=======
 const blogDropdown = document.querySelector(".dropdown-toggle");
 const submenu = document.querySelector(".submenu");
 
 if (blogDropdown && submenu) {
-    blogDropdown.onclick = function () {
+    blogDropdown.addEventListener("click", function () {
         submenu.classList.toggle("show");
         blogDropdown.classList.toggle("open");
-    };
+    });
 }
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 
 const profileToggle = document.querySelector("#profileToggle");
 const adminProfile = document.querySelector(".admin-profile");
 
-<<<<<<< HEAD
-profileToggle.onclick = function (e) {
-    e.stopPropagation();
-    adminProfile.classList.toggle("open");
-};
-
-document.onclick = function () {
-    adminProfile.classList.remove("open");
-};
-
-
-// Dashboard
-
-const dashboardSection = document.querySelector("#dashboardSection");
-const addBlogSection = document.querySelector("#addBlogSection");
-
-
-// Add New Blog - Dashboard
-
-const addNewBlogBtn = document.querySelector(".add-blog-btn");
-
-addNewBlogBtn.onclick = function (e) {
-    e.preventDefault();
-
-    dashboardSection.style.display = "none";
-    addBlogSection.style.display = "block";
-};
-
-
-// Add Blog - Sidebar
-
-const addBlogBtn = document.querySelector("#addBlogBtn");
-
-addBlogBtn.onclick = function (e) {
-    e.preventDefault();
-
-    dashboardSection.style.display = "none";
-    addBlogSection.style.display = "block";
-};
-
-
-// Dashboard Button
-
-const dashboardBtn = document.querySelector("#dashboardBtn");
-
-dashboardBtn.onclick = function (e) {
-    e.preventDefault();
-
-    addBlogSection.style.display = "none";
-    dashboardSection.style.display = "block";
-};
-
-// Quick Action - Add New Blog
-
-const quickAddBlog = document.querySelector(".quick-action");
-
-quickAddBlog.onclick = function (e) {
-    e.preventDefault();
-
-    dashboardSection.style.display = "none";
-    addBlogSection.style.display = "block";
-};
-=======
 if (profileToggle && adminProfile) {
-    profileToggle.onclick = function (e) {
+    profileToggle.addEventListener("click", function (e) {
         e.stopPropagation();
         adminProfile.classList.toggle("open");
-    };
+    });
 
-    document.onclick = function () {
-        adminProfile.classList.remove("open");
-    };
+    document.addEventListener("click", function (e) {
+        if (!adminProfile.contains(e.target)) {
+            adminProfile.classList.remove("open");
+        }
+    });
 }
 
 const dashboardSection = document.querySelector("#dashboardSection");
@@ -107,8 +30,11 @@ const allBlogsSection = document.querySelector("#allBlogsSection");
 
 const dashboardBtn = document.querySelector("#dashboardBtn");
 const allBlogsBtn = document.querySelector("#allBlogsBtn");
-const openAddBlogBtns = document.querySelectorAll(".open-add-blog");
 const viewAllBlogs = document.querySelector("#viewAllBlogs");
+
+const addBlogButtons = document.querySelectorAll(
+    ".open-add-blog, .add-blog-btn, #addBlogBtn, #quickAddBlog, .quick-add-blog"
+);
 
 function showSection(section) {
     if (dashboardSection) {
@@ -128,43 +54,73 @@ function showSection(section) {
     }
 }
 
-if (window.location.hash == "#allBlogsSection") {
-    showSection(allBlogsSection);
+function loadSectionFromHash() {
+    if (!dashboardSection && !addBlogSection && !allBlogsSection) {
+        return;
+    }
+
+    if (window.location.hash === "#allBlogsSection") {
+        showSection(allBlogsSection);
+    } else if (window.location.hash === "#addBlogSection") {
+        showSection(addBlogSection);
+    } else {
+        showSection(dashboardSection);
+    }
 }
 
-if (window.location.hash == "#addBlogSection") {
-    showSection(addBlogSection);
-}
+loadSectionFromHash();
+
+window.addEventListener("hashchange", loadSectionFromHash);
 
 if (dashboardBtn) {
     dashboardBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        showSection(dashboardSection);
-        window.location.hash = "";
+        if (dashboardSection) {
+            e.preventDefault();
+
+            showSection(dashboardSection);
+
+            window.history.pushState(
+                {},
+                "",
+                "index.php"
+            );
+        }
     });
 }
 
 if (allBlogsBtn) {
     allBlogsBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        showSection(allBlogsSection);
-        window.location.hash = "allBlogsSection";
+        if (allBlogsSection) {
+            e.preventDefault();
+
+            showSection(allBlogsSection);
+
+            window.location.hash = "allBlogsSection";
+        }
     });
 }
 
-openAddBlogBtns.forEach(function (button) {
+addBlogButtons.forEach(function (button) {
     button.addEventListener("click", function (e) {
-        e.preventDefault();
-        showSection(addBlogSection);
-        window.location.hash = "addBlogSection";
+        if (addBlogSection) {
+            e.preventDefault();
+
+            showSection(addBlogSection);
+
+            window.location.hash = "addBlogSection";
+        }
     });
 });
 
 if (viewAllBlogs) {
     viewAllBlogs.addEventListener("click", function (e) {
-        e.preventDefault();
-        showSection(allBlogsSection);
-        window.location.hash = "allBlogsSection";
+        if (allBlogsSection) {
+            e.preventDefault();
+
+            showSection(allBlogsSection);
+
+            window.location.hash = "allBlogsSection";
+        }
     });
 }
 
@@ -174,7 +130,16 @@ const successModalBtn = document.querySelector("#successModalBtn");
 if (successModal && successModalBtn) {
     successModalBtn.addEventListener("click", function () {
         successModal.style.display = "none";
-        window.history.pushState({}, "", "index.php#allBlogsSection");
+
+        if (allBlogsSection) {
+            showSection(allBlogsSection);
+        }
+
+        window.history.pushState(
+            {},
+            "",
+            "index.php#allBlogsSection"
+        );
     });
 }
 
@@ -200,15 +165,18 @@ deleteBlogBtns.forEach(function (button) {
 if (cancelDeleteBtn && deleteModal) {
     cancelDeleteBtn.addEventListener("click", function () {
         deleteModal.style.display = "none";
+
+        deleteLink = "";
     });
 }
 
 if (confirmDeleteBtn) {
     confirmDeleteBtn.addEventListener("click", function () {
-        window.location.href = deleteLink;
+        if (deleteLink !== "") {
+            window.location.href = deleteLink;
+        }
     });
 }
-
 
 const blogSearch = document.querySelector("#blogSearch");
 
@@ -227,56 +195,75 @@ if (blogSearch) {
             const author = row.querySelector(".blog-author");
             const category = row.querySelector(".category");
 
-            const elements = [title, author, category];
+            const elements = [
+                title,
+                author,
+                category
+            ];
 
             elements.forEach(function (element) {
 
                 if (element) {
 
                     if (!element.dataset.original) {
-                        element.dataset.original = element.textContent;
+                        element.dataset.original =
+                            element.textContent;
                     }
 
-                    element.innerHTML = element.dataset.original;
-
+                    element.textContent =
+                        element.dataset.original;
                 }
 
             });
 
-            const rowText = row.innerText.toLowerCase();
+            const rowText =
+                row.innerText.toLowerCase();
 
             if (
-                searchText == "" ||
-                rowText.includes(searchText.toLowerCase())
+                searchText === "" ||
+                rowText.includes(
+                    searchText.toLowerCase()
+                )
             ) {
                 row.style.display = "";
             } else {
                 row.style.display = "none";
             }
 
-            if (searchText != "" && row.style.display != "none") {
+            if (
+                searchText !== "" &&
+                row.style.display !== "none"
+            ) {
+
+                const safeSearchText =
+                    searchText.replace(
+                        /[.*+?^${}()|[\]\\]/g,
+                        "\\$&"
+                    );
+
+                const regex =
+                    new RegExp(
+                        "(" + safeSearchText + ")",
+                        "gi"
+                    );
 
                 elements.forEach(function (element) {
 
                     if (element) {
 
-                        const originalText = element.dataset.original;
+                        const originalText =
+                            element.dataset.original;
 
-                        const regex = new RegExp("(" + searchText + ")", "gi");
-
-                        element.innerHTML = originalText.replace(
-                            regex,
-                            "<mark>$1</mark>"
-                        );
-
+                        element.innerHTML =
+                            originalText.replace(
+                                regex,
+                                "<mark>$1</mark>"
+                            );
                     }
 
                 });
-
             }
 
         });
-
     });
 }
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)

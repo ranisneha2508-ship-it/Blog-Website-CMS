@@ -372,33 +372,21 @@ input {
 
 
 .breadcrumb {
-<<<<<<< HEAD
-    font-size: 11px;
-=======
     font-size: 16px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     color: #999999;
     margin-bottom: 8px;
 }
 
 
 .page-header h1 {
-<<<<<<< HEAD
-    font-size: 27px;
-=======
     font-size: 32px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     letter-spacing: -0.5px;
 }
 
 
 .welcome-text {
     color: #888888;
-<<<<<<< HEAD
-    font-size: 12px;
-=======
     font-size: 16px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     margin-top: 7px;
 }
 
@@ -421,14 +409,6 @@ input {
     background: #333333;
 }
 
-<<<<<<< HEAD
-
-/* =========================
-   STAT CARDS
-========================= */
-
-=======
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -444,10 +424,6 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-<<<<<<< HEAD
-    min-height: 145px;
-=======
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
@@ -523,31 +499,19 @@ input {
 
 
 .panel-header h3 {
-<<<<<<< HEAD
-    font-size: 14px;
-=======
     font-size: 24px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
 .panel-header p {
     color: #999999;
-<<<<<<< HEAD
-    font-size: 10px;
-=======
     font-size: 12px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     margin-top: 5px;
 }
 
 
 .view-all {
-<<<<<<< HEAD
-    font-size: 11px;
-=======
     font-size: 14px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     font-weight: 600;
 }
 
@@ -560,15 +524,6 @@ input {
 /* =========================
    TABLE
 ========================= */
-<<<<<<< HEAD
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-
-table {
-=======
 .table-wrapper {
     max-height: 360px;
     overflow-y: auto;
@@ -576,129 +531,10 @@ table {
 }
 
 .blogs-table {
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     width: 100%;
     border-collapse: collapse;
 }
 
-<<<<<<< HEAD
-
-th {
-    text-align: left;
-    font-size: 9px;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    font-weight: 600;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-}
-
-
-td {
-    padding: 15px 20px;
-    border-bottom: 1px solid #f1f1f1;
-    font-size: 10px;
-    color: #666666;
-    white-space: nowrap;
-}
-
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
-.blog-cell {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-}
-
-
-.blog-image {
-    width: 45px;
-    height: 38px;
-    display: grid;
-    place-items: center;
-    color: #777777;
-    background: #eeeeee;
-}
-
-
-.image-one {
-    background: #e7e1d8;
-}
-
-
-.image-two {
-    background: #dfe5e8;
-}
-
-
-.image-three {
-    background: #e6e2e7;
-}
-
-
-.image-four {
-    background: #e2e6dc;
-}
-
-
-.blog-cell strong {
-    display: block;
-    color: #222222;
-    font-size: 11px;
-    font-weight: 600;
-}
-
-
-.blog-cell small {
-    display: block;
-    color: #999999;
-    font-size: 9px;
-    margin-top: 4px;
-}
-
-
-.category {
-    color: #555555;
-    font-size: 10px;
-}
-
-
-.status {
-    display: inline-block;
-    padding: 5px 8px;
-    border-radius: 20px;
-    font-size: 9px;
-    font-weight: 600;
-}
-
-
-.status.published {
-    background: var(--success-bg);
-    color: var(--success);
-}
-
-
-.status.draft {
-    background: var(--draft-bg);
-    color: var(--draft);
-}
-
-
-.more-btn {
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: #888888;
-    font-size: 15px;
-}
-
-
-=======
 .blogs-table-head {
     position: sticky;
     top: 0;
@@ -748,7 +584,6 @@ tbody tr:last-child td {
     object-fit: cover;
     display: block;
 }
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 /* =========================
    QUICK ACTIONS
 ========================= */
@@ -1086,11 +921,7 @@ h1 {
     color: #232536;
     font-size: 36px;
     font-weight: 700;
-<<<<<<< HEAD
-    margin-bottom: 30px;
-=======
     margin-bottom: 10px;
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
@@ -1156,13 +987,9 @@ form textarea {
 
 
 /* TEXTAREA */
-<<<<<<< HEAD
-
-=======
 .edit-blog-heading{
     margin-bottom: 10px;
 }
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 form textarea {
     min-height: 120px;
     resize: vertical;
@@ -1285,10 +1112,6 @@ form button[type="submit"]:hover {
 #addBlogSection {
     display: none;
 }
-<<<<<<< HEAD
-
- 
-=======
 #allBlogsSection {
     display: none;
 }
@@ -1566,4 +1389,3 @@ form button[type="submit"]:hover {
     padding: 1px 3px;
     border-radius: 3px;
 }
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)

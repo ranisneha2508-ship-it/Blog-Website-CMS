@@ -54,11 +54,8 @@ if ($updateResult) {
     exit;
 }
  else {
-
         echo "Blog update failed";
-
     }
-
 }
 
 ?>
@@ -69,54 +66,31 @@ if ($updateResult) {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Edit Blog | Blog CMS</title>
-
     <link rel="stylesheet" href="admin.css">
-
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
 <?php include "master/header.php"; ?>
             <section class="add-blog-section edit-blog-section"  id="editBlogSection">
-
                 <div class="edit-blog-header">
-
                     <div class="edit-blog-heading">
-
                         <h1 class="edit-blog-title">
                             Edit Blog
                         </h1>
                   <a href="index.php" class="back-btn" > 
                      <i class="bi bi-arrow-left"></i> Back </a> 
-                     
                     </div>
                 </div>
 
-
-
-
-                <form
-                    method="POST"
-                    enctype="multipart/form-data"
-                    class="edit-blog-form"
-                >
+                <form method="POST" enctype="multipart/form-data" class="edit-blog-form">
 
                     <div class="form-group">
-
                         <label class="form-label">
                             Blog Title
                         </label>
-
-                        <input
-                            class="form-control"
-                            type="text"
-                            name="title"
+                        <input class="form-control" type="text"name="title"
                             value="<?php echo htmlspecialchars($blog['title']); ?>"
                             required
                         >
@@ -125,36 +99,21 @@ if ($updateResult) {
 
 
                     <div class="form-group">
-
                         <label class="form-label">
                             Current Image
                         </label>
 
-
                         <div class="current-image">
-
-                            <img
-                                class="current-blog-image"
-                                src="uploads/<?php echo htmlspecialchars($blog['image']); ?>"
-                                alt="<?php echo htmlspecialchars($blog['title']); ?>"
-                            >
-
+                            <img class="current-blog-image" src="uploads/<?php echo htmlspecialchars($blog['image']); ?>"alt="<?php echo htmlspecialchars($blog['title']); ?>" >
                         </div>
-
                     </div>
 
-
                     <div class="form-group">
-
                         <label class="form-label">
                             Change Image
                         </label>
 
-                        <input
-                            class="form-control"
-                            type="file"
-                            name="image"
-                        >
+                        <input class="form-control" type="file" name="image" >
 
                     </div>
 
