@@ -75,7 +75,7 @@
             <div class="post-card">
 
                 <img src="assets/images/featured.jpg" alt="">
-<div class="post-content">
+                <div class="post-content">
                 <p class="meta">
                     By <span2>John Doe</span2> |
                     May 23, 2022
