@@ -2,6 +2,28 @@
 
 include "../connection.php";
 
+
+$totalQuery = "SELECT COUNT(*) AS total FROM blogs";
+$totalResult = mysqli_query($conn, $totalQuery);
+$totalData = mysqli_fetch_assoc($totalResult);
+
+$totalBlogs = $totalData['total'];
+
+
+
+
+$successMessage = "";
+
+if (isset($_GET['success'])) {
+    $successMessage = "Blog published successfully";
+}
+
+if (isset($_GET['updated'])) {
+    $successMessage = "Blog updated successfully";
+}
+if (isset($_GET['deleted'])) {
+    $successMessage = "Blog deleted successfully";
+}
 if (isset($_POST['submit'])) {
 
     $title = $_POST['title'];
@@ -22,20 +44,28 @@ if (isset($_POST['submit'])) {
                 VALUES
                 ('$title', '$image', '$category', '$author', '$description', '$content')";
 
-        mysqli_query($conn, $sql);
+        $insertResult = mysqli_query($conn, $sql);
 
-        echo "Blog published successfully";
-
+        if ($insertResult) {
+            echo "<script>
+                window.location.href = 'index.php?success=1#allBlogsSection';
+            </script>";
+            exit;
+        } else {
+            echo "Blog publish failed";
+        }
     } else {
-
         echo "Image upload failed";
-
     }
 }
 
+$recentQuery = "SELECT * FROM blogs ORDER BY id DESC LIMIT 4";
+$recentResult = mysqli_query($conn, $recentQuery);
+
+$allBlogsQuery = "SELECT * FROM blogs ORDER BY id DESC";
+$allBlogsResult = mysqli_query($conn, $allBlogsQuery);
+
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -53,188 +83,24 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-
-<div class="admin-layout">
-
-    <div class="sidebar">
-
-        <div class="logo">
-            <div>
-                <h2>Blog<span>CMS</span></h2>
-                <small>Admin Panel</small>
-            </div>
-        </div>
-
-        <nav class="sidebar-nav">
-
-
-         <a href="#" class="nav-link active" id="dashboardBtn">
-    <i class="bi bi-grid-1x2-fill"></i>
-    <span>Dashboard</span>
-</a>
-
-           <button class="nav-link dropdown-toggle" type="button">
-    <i class="bi bi-file-earmark-text"></i>
-    <span>Blogs</span>
-    <i class="bi bi-chevron-down arrow"></i>
-</button>
-
-            <div class="submenu">
-                <a href="#">
-                    All Blogs
-                </a>
-
-               <a href="#" id="addBlogBtn">Add Blog</a>
-
-                <a href="#">
-                    Drafts
-                </a>
-            </div>
-
-            <a href="#" class="nav-link">
-                <i class="bi bi-folder"></i>
-                <span>Categories</span>
-            </a>
-
-            <a href="#" class="nav-link">
-                <i class="bi bi-tags"></i>
-                <span>Tags</span>
-            </a>
-
-            <p class="nav-title settings-title">SYSTEM</p>
-
-            <a href="#" class="nav-link">
-                <i class="bi bi-gear"></i>
-                <span>Settings</span>
-            </a>
-
-            <a href="#" class="nav-link">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Logout</span>
-            </a>
-
-        </nav>
-
-        <div class="sidebar-bottom">
-
-            <div class="admin-mini">
-                <div class="avatar">SR</div>
-
-                <div>
-                    <strong>Admin</strong>
-                    <small>Administrator</small>
-                </div>
-
-                <i class="bi bi-three-dots"></i>
-            </div>
-
-        </div>
-
-    </div>
-
-    <main class="main-content">
-        <header class="topbar">
-
-            <div class="mobile-logo">
-                <strong>Blog<span>CMS</span></strong>
-            </div>
-
-            <div class="search-box">
-                <i class="bi bi-search"></i>
-                <input type="text" placeholder="Search blogs...">
-            </div>
-
-            <div class="topbar-right">
-
-                <button class="icon-btn">
-                    <i class="bi bi-bell"></i>
-                    <span class="notification"></span>
-                </button>
-
-               <div class="admin-profile">
-
-    <button class="top-admin" id="profileToggle">
-
-        <div class="avatar">SR</div>
-
-        <div class="admin-info">
-            <strong>Admin</strong>
-            <small>Administrator</small>
-        </div>
-
-        <i class="bi bi-chevron-down profile-arrow"></i>
-
-    </button>
-
-
-    <div class="profile-dropdown" id="profileDropdown">
-
-        <div class="profile-dropdown-header">
-            <div class="avatar">SR</div>
-
-            <div>
-                <strong>Admin</strong>
-                <small>Administrator</small>
-            </div>
-        </div>
-
-        <div class="profile-divider"></div>
-
-        <a href="#">
-            <i class="bi bi-person"></i>
-            My Profile
-        </a>
-
-        <a href="#">
-            <i class="bi bi-gear"></i>
-            Settings
-        </a>
-
-        <div class="profile-divider"></div>
-
-        <a href="#" class="logout-link">
-            <i class="bi bi-box-arrow-right"></i>
-            Logout
-        </a>
-
-    </div>
-
-</div>
-
-            </div>
-
-        </header>
-
-
-        <!-- CONTENT -->
-
+<?php include "master/header.php"; ?>
         <section class="dashboard " id="dashboardSection">
-
-            <!-- PAGE HEADER -->
-
             <div class="page-header">
-
                 <div>
                     <p class="breadcrumb">
                         Admin / Dashboard
                     </p>
-
                     <h1>Dashboard</h1>
-
                     <p class="welcome-text">
                         Welcome back, Admin. Here's what's happening with your blog.
                     </p>
                 </div>
 
-                <a href="#" class="add-blog-btn">
+                <a href="#" class="add-blog-btn open-add-blog">
                     <i class="bi bi-plus-lg"></i>
                     Add New Blog
                 </a>
-
             </div>
-
-
-            <!-- STAT CARDS -->
 
             <div class="stats-grid">
 
@@ -242,12 +108,7 @@ if (isset($_POST['submit'])) {
 
                     <div class="stat-content">
                         <span>Total Blogs</span>
-                        <h2>24</h2>
-
-                        <p class="growth positive">
-                            <i class="bi bi-arrow-up"></i>
-                            12% <span>from last month</span>
-                        </p>
+                        <h2><?php echo $totalBlogs; ?></h2>
                     </div>
 
                     <div class="stat-icon">
@@ -256,38 +117,21 @@ if (isset($_POST['submit'])) {
 
                 </div>
 
-
                 <div class="stat-card">
-
                     <div class="stat-content">
                         <span>Published</span>
-                        <h2>19</h2>
-
-                        <p class="growth positive">
-                            <i class="bi bi-arrow-up"></i>
-                            8% <span>from last month</span>
-                        </p>
+                        <h2><?php echo $totalBlogs; ?></h2>
                     </div>
-
                     <div class="stat-icon">
                         <i class="bi bi-check-circle"></i>
                     </div>
-
                 </div>
 
-
                 <div class="stat-card">
-
                     <div class="stat-content">
                         <span>Drafts</span>
-                        <h2>05</h2>
-
-                        <p class="growth neutral">
-                            <i class="bi bi-dash"></i>
-                            2% <span>from last month</span>
-                        </p>
+                        <h2>0</h2>
                     </div>
-
                     <div class="stat-icon">
                         <i class="bi bi-file-earmark"></i>
                     </div>
@@ -295,325 +139,207 @@ if (isset($_POST['submit'])) {
                 </div>
 
 
-                <div class="stat-card">
+            </div>
+<div class="dashboard-grid">
 
-                    <div class="stat-content">
-                        <span>Total Views</span>
-                        <h2>12.5K</h2>
+    <div class="panel recent-blogs">
 
-                        <p class="growth positive">
-                            <i class="bi bi-arrow-up"></i>
-                            18% <span>from last month</span>
-                        </p>
-                    </div>
+        <div class="panel-header">
 
-                    <div class="stat-icon">
-                        <i class="bi bi-bar-chart"></i>
-                    </div>
-
-                </div>
-
+            <div class="panel-heading">
+                <h3 class="panel-title">Recent Blogs</h3>
+                <p class="panel-subtitle">Latest posts from your website</p>
             </div>
 
+            <a href="#" class="view-all" id="viewAllBlogs">
+                View All
+                <i class="bi bi-arrow-right"></i>
+            </a>
 
-            <!-- LOWER GRID -->
+        </div>
 
-            <div class="dashboard-grid">
+        <div class="table-wrapper">
 
+    <table class="blogs-table">
 
-                <!-- RECENT BLOGS -->
+        <thead class="blogs-table-head">
 
-                <div class="panel recent-blogs">
+            <tr class="blogs-table-row">
+                <th class="blogs-table-heading">Blog</th>
+                <th class="blogs-table-heading">Blog Title</th>
+                <th class="blogs-table-heading">Category</th>
+                <th class="blogs-table-heading">Status</th>
+                <th class="blogs-table-heading">Action</th>
+            </tr>
 
-                    <div class="panel-header">
+        </thead>
 
-                        <div>
-                            <h3>Recent Blogs</h3>
-                            <p>Latest posts from your website</p>
+        <tbody class="blogs-table-body">
+
+            <?php while ($blog = mysqli_fetch_assoc($recentResult)) { ?>
+
+                <tr class="blogs-table-row">
+
+                    <td class="blogs-table-data">
+
+                        <div class="blog-cell">
+
+                            <div class="blog-image">
+
+                                <img
+                                    class="blog-thumbnail"
+                                    src="uploads/<?php echo htmlspecialchars($blog['image']); ?>"
+                                    alt="<?php echo htmlspecialchars($blog['title']); ?>"
+                                >
+
+                            </div>
+
                         </div>
 
-                        <a href="#" class="view-all">
-                            View All
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
+                    </td>
 
-                    </div>
+                    <td class="blogs-table-data">
 
+                        <div class="blog-details">
 
-                    <div class="table-wrapper">
+                            <strong class="blog-title">
+                                <?php echo htmlspecialchars($blog['title']); ?>
+                            </strong>
 
-                        <table>
+                            <small class="blog-author">
+                                By <?php echo htmlspecialchars($blog['author']); ?>
+                            </small>
 
-                            <thead>
-                                <tr>
-                                    <th>Blog</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <tr>
-
-                                    <td>
-                                        <div class="blog-cell">
-
-                                            <div class="blog-image image-one">
-                                                <i class="bi bi-image"></i>
-                                            </div>
-
-                                            <div>
-                                                <strong>
-                                                    The Future of Web Design
-                                                </strong>
-
-                                                <small>
-                                                    By Sneha Rani
-                                                </small>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <span class="category">
-                                            Design
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span class="status published">
-                                            Published
-                                        </span>
-                                    </td>
-
-                                    <td>Aug 08, 2026</td>
-
-                                    <td>
-                                        <button class="more-btn">
-                                            <i class="bi bi-three-dots"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <div class="blog-cell">
-
-                                            <div class="blog-image image-two">
-                                                <i class="bi bi-image"></i>
-                                            </div>
-
-                                            <div>
-                                                <strong>
-                                                    Getting Started With PHP
-                                                </strong>
-
-                                                <small>
-                                                    By Sneha Rani
-                                                </small>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <span class="category">
-                                            Development
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span class="status published">
-                                            Published
-                                        </span>
-                                    </td>
-
-                                    <td>Aug 06, 2026</td>
-
-                                    <td>
-                                        <button class="more-btn">
-                                            <i class="bi bi-three-dots"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <div class="blog-cell">
-
-                                            <div class="blog-image image-three">
-                                                <i class="bi bi-image"></i>
-                                            </div>
-
-                                            <div>
-                                                <strong>
-                                                    UI/UX Trends 2026
-                                                </strong>
-
-                                                <small>
-                                                    By Sneha Rani
-                                                </small>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <span class="category">
-                                            UI/UX
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span class="status draft">
-                                            Draft
-                                        </span>
-                                    </td>
-
-                                    <td>Aug 04, 2026</td>
-
-                                    <td>
-                                        <button class="more-btn">
-                                            <i class="bi bi-three-dots"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <div class="blog-cell">
-
-                                            <div class="blog-image image-four">
-                                                <i class="bi bi-image"></i>
-                                            </div>
-
-                                            <div>
-                                                <strong>
-                                                    Why JavaScript Matters
-                                                </strong>
-
-                                                <small>
-                                                    By Sneha Rani
-                                                </small>
-                                            </div>
-
-                                        </div>
-                                    </td>
-
-                                    <td>
-                                        <span class="category">
-                                            JavaScript
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        <span class="status published">
-                                            Published
-                                        </span>
-                                    </td>
-
-                                    <td>Aug 02, 2026</td>
-
-                                    <td>
-                                        <button class="more-btn">
-                                            <i class="bi bi-three-dots"></i>
-                                        </button>
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUICK ACTIONS -->
-
-                <div class="panel quick-panel">
-
-                    <div class="panel-header">
-
-                        <div>
-                            <h3>Quick Actions</h3>
-                            <p>Manage your content</p>
                         </div>
 
-                    </div>
+                    </td>
+
+                    <td class="blogs-table-data">
+
+                        <span class="category">
+                            <?php echo htmlspecialchars($blog['category']); ?>
+                        </span>
+
+                    </td>
+
+                    <td class="blogs-table-data">
+
+                        <span class="status published">
+                            Published
+                        </span>
+
+                    </td>
+
+                    <td class="blogs-table-data">
+
+                        <button class="more-btn" type="button">
+                            <i class="bi bi-three-dots"></i>
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            <?php } ?>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+    </div>
 
 
-                    <div class="quick-actions">
+    <div class="panel quick-panel">
 
-                        <a href="#" class="quick-action">
+        <div class="panel-header">
 
-                            <div class="quick-icon">
-                                <i class="bi bi-plus-lg"></i>
-                            </div>
-
-                            <div>
-                                <strong>Add New Blog</strong>
-                                <small>Create a new blog post</small>
-                            </div>
-
-                            <i class="bi bi-chevron-right"></i>
-
-                        </a>
-
-
-                        <a href="#" class="quick-action">
-
-                            <div class="quick-icon">
-                                <i class="bi bi-folder-plus"></i>
-                            </div>
-
-                            <div>
-                                <strong>Add Category</strong>
-                                <small>Create a blog category</small>
-                            </div>
-
-                            <i class="bi bi-chevron-right"></i>
-
-                        </a>
-
-
-                        <a href="#" class="quick-action">
-
-                            <div class="quick-icon">
-                                <i class="bi bi-tags"></i>
-                            </div>
-
-                            <div>
-                                <strong>Manage Tags</strong>
-                                <small>Organize your blog tags</small>
-                            </div>
-
-                            <i class="bi bi-chevron-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
+            <div class="panel-heading">
+                <h3 class="panel-title">Quick Actions</h3>
+                <p class="panel-subtitle">Manage your content</p>
             </div>
 
-        </section>
+        </div>
+
+        <div class="quick-actions">
+
+            <a href="#" class="quick-action quick-add-blog open-add-blog" id="quickAddBlog">
+
+                <div class="quick-icon">
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <strong class="quick-title">
+                        Add New Blog
+                    </strong>
+
+                    <small class="quick-subtitle">
+                        Create a new blog post
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right quick-arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="quick-action quick-add-category" id="quickAddCategory">
+
+                <div class="quick-icon">
+                    <i class="bi bi-folder-plus"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <strong class="quick-title">
+                        Add Category
+                    </strong>
+
+                    <small class="quick-subtitle">
+                        Create a blog category
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right quick-arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="quick-action quick-manage-tags" id="quickManageTags">
+
+                <div class="quick-icon">
+                    <i class="bi bi-tags"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <strong class="quick-title">
+                        Manage Tags
+                    </strong>
+
+                    <small class="quick-subtitle">
+                        Organize your blog tags
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right quick-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+<!-- ADD BLOG SECTION -->
 
 <section class="add-blog-section" id="addBlogSection">
 
@@ -648,87 +374,205 @@ if (isset($_POST['submit'])) {
 </section>
 
 
+<section id="allBlogsSection">
 
+    <div class="panel recent-blogs">
 
+        <div class="panel-header">
 
+            <div class="panel-heading">
+                <h3 class="panel-title">All Blogs</h3>
+                <p class="panel-subtitle">Manage all posts from your website</p>
+            </div>
 
-<section class="all-blogs-section" id="allBlogsSection">
+            <a href="#" class="view-all add-blog-btn open-add-blog">
+                Add New Blog
+                <i class="bi bi-plus-lg"></i>
+            </a>
 
-    <div class="all-blogs-header">
-        <div>
-            <h2>All Blogs</h2>
-            <p>Manage all your published blog posts</p>
         </div>
 
-        <button class="add-blog-btn" id="addBlogFromAllBlogs">
-            + Add New Blog
-        </button>
-    </div>
 
-    <div class="blogs-table-wrapper">
+        <div class="table-wrapper">
 
-        <table class="blogs-table">
+            <table class="blogs-table">
 
-            <thead>
-                <tr>
-                    <th>Blog</th>
-                    <th>Category</th>
-                    <th>Author</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
+                <thead class="blogs-table-head">
+<tr class="blogs-table-row">
+                        <th class="blogs-table-heading">Blog</th>
+                        <th class="blogs-table-heading">Blog Title</th>
+                        <th class="blogs-table-heading">Category</th>
+                        <th class="blogs-table-heading">Status</th>
+                        <th class="blogs-table-heading">Actions</th>
+                    </tr>
 
-            <tbody>
+                </thead>
 
-                <tr>
-                    <td>
-                        <div class="blog-info">
-                            <img src="assets/images/blog1.jpg" alt="">
-                            <div>
-                                <h4>The Future of Web Design</h4>
-                                <p>Latest trends in modern web design</p>
-                            </div>
-                        </div>
-                    </td>
 
-                    <td>Design</td>
+                <tbody class="blogs-table-body">
 
-                    <td>Sneha Rani</td>
+                    <?php while ($blog = mysqli_fetch_assoc($allBlogsResult)) { ?>
 
-                    <td>
-                        <span class="status published">
-                            Published
-                        </span>
-                    </td>
+                        <tr class="blogs-table-row all-blog-row">
 
-                    <td>Aug 08, 2026</td>
+                            <td class="blogs-table-data">
 
-                    <td>
-                        <div class="blog-actions">
-                            <button class="edit-btn">
-                                Edit
-                            </button>
+                                <div class="blog-cell">
 
-                            <button class="delete-btn">
-                                Delete
-                            </button>
-                        </div>
-                    </td>
+                                    <div class="blog-image">
 
-                </tr>
+                                        <img
+                                            class="blog-thumbnail"
+                                            src="uploads/<?php echo htmlspecialchars($blog['image']); ?>"
+                                            alt="<?php echo htmlspecialchars($blog['title']); ?>"
+                                        >
 
-            </tbody>
+                                    </div>
 
-        </table>
+                                </div>
+
+                            </td>
+
+
+                            <td class="blogs-table-data">
+
+                                <div class="blog-details">
+
+                                    <strong class="blog-title">
+                                        <?php echo htmlspecialchars($blog['title']); ?>
+                                    </strong>
+
+                                    <small class="blog-author">
+                                        By <?php echo htmlspecialchars($blog['author']); ?>
+                                    </small>
+
+                                </div>
+
+                            </td>
+
+
+                            <td class="blogs-table-data">
+
+                                <span class="category">
+                                    <?php echo htmlspecialchars($blog['category']); ?>
+                                </span>
+
+                            </td>
+
+
+                            <td class="blogs-table-data">
+
+                                <span class="status published">
+                                    Published
+                                </span>
+
+                            </td>
+
+
+                            <td class="blogs-table-data">
+
+                                <div class="blog-actions">
+                    <a href="edit-blog.php?id=<?php echo $blog['id']; ?>"
+                        class="action-btn edit-btn">
+                        <i class="bi bi-pencil-square"></i>
+                        Edit
+                    </a>
+
+            <a href="delete-blog.php?id=<?php echo $blog['id']; ?>"
+             class="action-btn delete-btn deleteBlogBtn">
+                <i class="bi bi-trash3"></i>
+                Delete
+            </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    <?php } ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
 </section>
+
+
     </main>
 
 </div>
+
+
+<?php if (!empty($successMessage)) { ?>
+
+    <div class="success-modal" id="successModal">
+
+        <div class="success-modal-box">
+
+            <div class="success-modal-icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+<h2 class="success-modal-title">
+    <?php
+    if (isset($_GET['updated'])) {
+        echo "Blog Updated";
+    } elseif (isset($_GET['deleted'])) {
+        echo "Blog Deleted";
+    } else {
+        echo "Blog Published";
+    }
+    ?>
+</h2>
+            <p class="success-modal-text">
+                <?php echo $successMessage; ?>
+            </p>
+
+            <button class="success-modal-btn" id="successModalBtn" type="button">
+                Done
+            </button>
+
+        </div>
+
+    </div>
+
+<?php } ?>
+<div class="delete-modal" id="deleteModal">
+
+    <div class="delete-modal-box">
+
+        <div class="delete-modal-icon">
+            <i class="bi bi-trash3"></i>
+        </div>
+
+        <h2>Delete Blog?</h2>
+
+        <p>
+            Are you sure you want to delete this blog?
+            This action cannot be undone.
+        </p>
+
+        <div class="delete-modal-actions">
+
+            <button type="button" class="cancel-delete-btn" id="cancelDeleteBtn">
+                Cancel
+            </button>
+
+            <button type="button" class="confirm-delete-btn" id="confirmDeleteBtn">
+                <i class="bi bi-trash3"></i>
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 <script src="admin.js"></script>
 </body>
 </html>

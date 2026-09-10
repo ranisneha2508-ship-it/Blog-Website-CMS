@@ -37,6 +37,7 @@ if (!$blog) {
 
 <?php include 'masters/header.php'; ?>
 
+<<<<<<< HEAD
 
 <!-- BLOG DETAILS -->
 
@@ -79,6 +80,39 @@ if (!$blog) {
     </div>
 
 </section>
+=======
+<section class="single-blog-banner">
+    <div class = "container">
+
+        <div class="single-blog-container">
+
+        <div class="single-blog-image">
+                <img src="admin/uploads/<?php echo $blog['image']; ?>" alt="">   
+                <h1>
+                    <?php echo $blog['title']; ?>
+                </h1>
+                <p>
+                    By <?php echo $blog['author']; ?>
+                </p>
+        </div>
+        <div class="single-blog-content">
+                
+                <h1>
+                    <?php echo $blog['category']; ?>
+                </h1>
+                <div class="blog-description">
+                    <p>
+                        <?php echo $blog['description']; ?>
+                    </p>
+                </div>
+                <div class="blog-full-content">
+                    <?php echo nl2br($blog['content']); ?>
+                </div>
+        </div>
+        </div>
+        </div>
+        </section>
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 
 
 <!-- JOIN SECTION -->

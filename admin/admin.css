@@ -372,21 +372,33 @@ input {
 
 
 .breadcrumb {
+<<<<<<< HEAD
     font-size: 11px;
+=======
+    font-size: 16px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     color: #999999;
     margin-bottom: 8px;
 }
 
 
 .page-header h1 {
+<<<<<<< HEAD
     font-size: 27px;
+=======
+    font-size: 32px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     letter-spacing: -0.5px;
 }
 
 
 .welcome-text {
     color: #888888;
+<<<<<<< HEAD
     font-size: 12px;
+=======
+    font-size: 16px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     margin-top: 7px;
 }
 
@@ -409,11 +421,14 @@ input {
     background: #333333;
 }
 
+<<<<<<< HEAD
 
 /* =========================
    STAT CARDS
 ========================= */
 
+=======
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -429,7 +444,10 @@ input {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+<<<<<<< HEAD
     min-height: 145px;
+=======
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
@@ -505,19 +523,31 @@ input {
 
 
 .panel-header h3 {
+<<<<<<< HEAD
     font-size: 14px;
+=======
+    font-size: 24px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
 .panel-header p {
     color: #999999;
+<<<<<<< HEAD
     font-size: 10px;
+=======
+    font-size: 12px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     margin-top: 5px;
 }
 
 
 .view-all {
+<<<<<<< HEAD
     font-size: 11px;
+=======
+    font-size: 14px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     font-weight: 600;
 }
 
@@ -530,6 +560,7 @@ input {
 /* =========================
    TABLE
 ========================= */
+<<<<<<< HEAD
 
 .table-wrapper {
     overflow-x: auto;
@@ -537,10 +568,20 @@ input {
 
 
 table {
+=======
+.table-wrapper {
+    max-height: 360px;
+    overflow-y: auto;
+    position: relative;
+}
+
+.blogs-table {
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
     width: 100%;
     border-collapse: collapse;
 }
 
+<<<<<<< HEAD
 
 th {
     text-align: left;
@@ -657,6 +698,57 @@ tbody tr:last-child td {
 }
 
 
+=======
+.blogs-table-head {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.blogs-table-heading {
+    background: #ffffff;
+    padding: 14px 18px;
+    text-align: left;
+    font-size: 12px;
+    border-bottom: 1px solid #d5cece;
+}
+
+.blogs-table-data {
+    padding: 14px 18px;
+    font-size: 12px;
+}
+
+.blog-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.blog-title {
+    display: block;
+    font-weight: 600;
+}
+
+.blog-author {
+    display: block;
+    font-size: 12px;
+    opacity: 0.65;
+}
+
+.blog-image {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.blog-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 /* =========================
    QUICK ACTIONS
 ========================= */
@@ -994,7 +1086,11 @@ h1 {
     color: #232536;
     font-size: 36px;
     font-weight: 700;
+<<<<<<< HEAD
     margin-bottom: 30px;
+=======
+    margin-bottom: 10px;
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 }
 
 
@@ -1060,7 +1156,13 @@ form textarea {
 
 
 /* TEXTAREA */
+<<<<<<< HEAD
 
+=======
+.edit-blog-heading{
+    margin-bottom: 10px;
+}
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
 form textarea {
     min-height: 120px;
     resize: vertical;
@@ -1183,5 +1285,285 @@ form button[type="submit"]:hover {
 #addBlogSection {
     display: none;
 }
+<<<<<<< HEAD
 
  
+=======
+#allBlogsSection {
+    display: none;
+}
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+ .success-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.success-modal-box {
+    width: 380px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.success-modal-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #eaf8ef;
+    color: #28a745;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.success-modal-title {
+    margin: 0 0 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #232536;
+}
+
+.success-modal-text {
+    margin: 0 0 25px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280;
+}
+
+.success-modal-btn {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 13px 20px;
+    background: #FFD050;
+    color: #232536;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.success-modal-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+.blog-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-btn {
+    min-width: 78px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.action-btn i {
+    font-size: 13px;
+}
+
+.edit-btn {
+    background: #592EA9;
+    color: #ffffff;
+    border: 1px solid #592EA9;
+}
+
+.edit-btn:hover {
+    background: #472487;
+    border-color: #472487;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.delete-btn {
+    background: #ffffff;
+    color: #232536;
+    border: 1px solid #d9d9dd;
+}
+
+.delete-btn:hover {
+    background: #FFD050;
+    border-color: #FFD050;
+    color: #232536;
+    transform: translateY(-1px);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 10px 16px;
+
+    background: #ffffff;
+    color: #232536;
+
+    border: 1px solid #dedee3;
+    border-radius: 7px;
+
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.back-btn i {
+    font-size: 15px;
+    transition: transform 0.25s ease;
+}
+
+.back-btn:hover {
+    background: #232536;
+    color: #ffffff;
+    border-color: #232536;
+}
+
+.back-btn:hover i {
+    transform: translateX(-3px);
+}
+.current-image {
+    width: 180px;
+    height: 120px;
+    margin-top: 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.current-blog-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.delete-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(35, 37, 54, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.delete-modal-box {
+    width: 420px;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 15px 45px rgba(35, 37, 54, 0.18);
+}
+
+.delete-modal-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #fff1f1;
+    color: #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.delete-modal-box h2 {
+    margin: 0 0 10px;
+    color: #232536;
+    font-size: 22px;
+}
+
+.delete-modal-box p {
+    margin: 0 auto 25px;
+    max-width: 320px;
+    color: #6d6e76;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.delete-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cancel-delete-btn,
+.confirm-delete-btn {
+    height: 42px;
+    padding: 0 20px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.cancel-delete-btn {
+    background: #ffffff;
+    color: #232536;
+    border: 1px solid #dedee3;
+}
+
+.cancel-delete-btn:hover {
+    background: #f5f5f5;
+}
+
+.confirm-delete-btn {
+    background: #dc3545;
+    color: #ffffff;
+    border: 1px solid #dc3545;
+}
+
+.confirm-delete-btn:hover {
+    background: #bb2d3b;
+    border-color: #bb2d3b;
+}
+
+
+.blog-title mark,
+.blog-author mark,
+.category mark {
+    background: #FFD050;
+    color: #232536;
+    padding: 1px 3px;
+    border-radius: 3px;
+}
+>>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
