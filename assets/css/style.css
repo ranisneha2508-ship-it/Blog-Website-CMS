@@ -693,3 +693,23 @@ a{
         text-align:center;
     }
 }
+/* blog-page */
+.blog-banner{
+    background:#F4F0F8;
+    padding:100px 0;
+    overflow:hidden;
+}
+
+.blog-banner-slider .slide{
+    display:flex !important;
+    align-items:center;
+}
+
+.blog-banner-content{
+    max-width:560px;
+}
+
+.blog-banner-image img{
+    width:100%;
+    display:block;
+}

@@ -50,3 +50,15 @@ $(window).scroll(function(){
     }
 
 });
+
+
+
+$('.blog-banner-slider').slick({
+    arrows:true,
+    dots:false,
+    infinite:true,
+    autoplay:true,
+    autoplaySpeed:4000,
+    speed:800,
+    fade:true
+});
