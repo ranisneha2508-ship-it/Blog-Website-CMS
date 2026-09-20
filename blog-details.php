@@ -37,85 +37,51 @@ if (!$blog) {
 
 <?php include 'masters/header.php'; ?>
 
-<<<<<<< HEAD
 
-<!-- BLOG DETAILS -->
 
 <section class="single-blog-banner">
-
     <div class="container">
+        <div class="row align-items-start g-5">
 
-        <h1>
-            <?php echo $blog['title']; ?>
-        </h1>
+            <div class="col-lg-6">
 
-        <p>
-            By <?php echo $blog['author']; ?>
-        </p>
+                <span class="blog-category">
+                    <?php echo $blog['category']; ?>
+                </span>
 
-        <span>
-            <?php echo $blog['category']; ?>
-        </span>
+               
 
-        <div class="single-blog-image">
+                <div class="single-blog-image">
+                    <img src="admin/uploads/<?php echo $blog['image']; ?>" alt="">
+                </div>
 
-           <img src="admin/uploads/<?php echo $blog['image']; ?>" alt="">   
+            </div>
 
-        </div>
-
-        <div class="blog-description">
-
-            <p>
-                <?php echo $blog['description']; ?>
-            </p>
-
-        </div>
-
-        <div class="blog-full-content">
-
-            <?php echo nl2br($blog['content']); ?>
-
-        </div>
-
-    </div>
-
-</section>
-=======
-<section class="single-blog-banner">
-    <div class = "container">
-
-        <div class="single-blog-container">
-
-        <div class="single-blog-image">
-                <img src="admin/uploads/<?php echo $blog['image']; ?>" alt="">   
-                <h1>
+            <div class="col-lg-6">
+                <div class="blog-right-content">
+ <h1>
                     <?php echo $blog['title']; ?>
                 </h1>
-                <p>
+
+                <p class="blog-author">
                     By <?php echo $blog['author']; ?>
                 </p>
-        </div>
-        <div class="single-blog-content">
-                
-                <h1>
-                    <?php echo $blog['category']; ?>
-                </h1>
-                <div class="blog-description">
-                    <p>
-                        <?php echo $blog['description']; ?>
-                    </p>
-                </div>
-                <div class="blog-full-content">
-                    <?php echo nl2br($blog['content']); ?>
-                </div>
-        </div>
-        </div>
-        </div>
-        </section>
->>>>>>> 372b0a4 (Update Blog CMS admin dashboard and blog management features)
+                    <div class="blog-description">
+                        <p>
+                            <?php echo $blog['description']; ?>
+                        </p>
+                    </div>
 
+                  
 
-<!-- JOIN SECTION -->
+                </div>
+            </div>
+  <div class="blog-full-content">
+                        <?php echo nl2br($blog['content']); ?>
+                    </div>
+        </div>
+    </div>
+</section>
 
 <section class="join">
 
