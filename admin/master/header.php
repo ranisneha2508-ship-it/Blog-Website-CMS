@@ -56,10 +56,6 @@
                 <span>Settings</span>
             </a>
 
-            <a href="#" class="nav-link">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Logout</span>
-            </a>
 
         </nav>
 
@@ -152,13 +148,48 @@
 
                         <div class="profile-divider"></div>
 
-                        <a href="#" class="logout-link">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Logout</span>
+                        <a href="logout.php" class="logout-link" id="logoutBtn">
+    <i class="bi bi-box-arrow-right"></i>
+    Logout
+</a>
                         </a>
 
                     </div>
+<div class="logout-modal" id="logoutModal">
 
+    <div class="logout-modal-box">
+
+        <div class="logout-modal-icon">
+            <i class="bi bi-box-arrow-right"></i>
+        </div>
+
+        <h2>Logout?</h2>
+
+        <p>Are you sure you want to logout?</p>
+
+        <div class="logout-modal-actions">
+
+            <button
+                type="button"
+                class="cancel-logout-btn"
+                id="cancelLogoutBtn"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="confirm-logout-btn"
+                id="confirmLogoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
                 </div>
 
             </div>

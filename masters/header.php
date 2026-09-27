@@ -22,7 +22,10 @@
                             <li><a href="blog.php">Blog</a></li>
                             <li><a href="about.php">About Us</a></li>
                             <li><a href="contact.php">Contact Us</a></li>
-                            <a href="#" class="btn-subscribe">Get Started</a>
+                            <a href="admin/login.php" class="admin-login-btn">
+    <i class="bi bi-person"></i>
+    Admin Login
+</a>
                         </ul>
                     </nav>
 

@@ -1,5 +1,5 @@
 <?php
-
+include "auth.php";
 include "../connection.php";
 
 $id = $_GET['id'];

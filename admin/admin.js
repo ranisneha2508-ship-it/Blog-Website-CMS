@@ -267,3 +267,52 @@ if (blogSearch) {
         });
     });
 }
+window.addEventListener("pageshow", function (event) {
+
+    const navigation =
+        performance.getEntriesByType("navigation")[0];
+
+    if (
+        event.persisted ||
+        (navigation && navigation.type == "back_forward")
+    ) {
+        window.location.reload();
+    }
+
+});
+const logoutBtn = document.querySelector(".logout-link");
+const logoutModal = document.querySelector("#logoutModal");
+const cancelLogoutBtn = document.querySelector("#cancelLogoutBtn");
+const confirmLogoutBtn = document.querySelector("#confirmLogoutBtn");
+
+if (logoutBtn && logoutModal) {
+
+    logoutBtn.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        logoutModal.style.display = "flex";
+
+    });
+
+}
+
+if (cancelLogoutBtn && logoutModal) {
+
+    cancelLogoutBtn.addEventListener("click", function () {
+
+        logoutModal.style.display = "none";
+
+    });
+
+}
+
+if (confirmLogoutBtn) {
+
+    confirmLogoutBtn.addEventListener("click", function () {
+
+        window.location.href = "logout.php";
+
+    });
+
+}
